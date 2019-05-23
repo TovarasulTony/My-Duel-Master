@@ -32,6 +32,7 @@ public class HandState : CardState
     }
 
     public override void LeaveState()
+
     {
         mHandManager.RemoveCardFromHand(mCardReference);
     }

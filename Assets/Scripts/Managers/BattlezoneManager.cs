@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,27 +28,46 @@ public class BattlezoneManager : GameZoneManager
 
         battleState.WhenSummoned();
     }
-
-   /*public void AddCardToManager(Card _card)
+    public override void RemoveCardFromManager(Card _card)
     {
-        mCardList.Add(_card);
-        _card.transform.position = new Vector3(transform.position.x + mNextCardPoz, transform.position.y + 0.1f, transform.position.z + 0.1f);
-        mNextCardPoz += 1.5f;
-        _card.transform.localScale = new Vector3(0.1f, 0.1f, 0.15f);
-        _card.transform.eulerAngles = new Vector3(0, _card.transform.eulerAngles.y == 0 ? 0 : 180, 0);
-
-        BattleState battleState = new BattleState(_card);
-        battleState.SetBattlezoneManager(this);
-
-        _card.SetCardState(battleState);
-
-        if (_card.HasTraits(TRAITS.BLOCKER) == true)
+        mNextCardPoz -= 1.5f;
+        RepositionCards(_card);
+        mCardList.Remove(_card);
+        
+      
+    }
+    private void RepositionCards(Card _card)
+    {
+        //Add Security Check
+        int startIndex  = mCardList.IndexOf(_card);
+        for (int i = startIndex + 1; i< mCardList.Count; i++)
         {
-            mBlockerList.Add(_card);
+            mCardList[i].transform.position = new Vector3(mCardList[i].transform.position.x - 1.5f, mCardList[i].transform.position.y, mCardList[i].transform.position.z);
         }
+    }
 
-        battleState.WhenSummoned();
-    }*/
+  
+
+    /*public void AddCardToManager(Card _card)
+{
+    mCardList.Add(_card);
+    _card.transform.position = new Vector3(transform.position.x + mNextCardPoz, transform.position.y + 0.1f, transform.position.z + 0.1f);
+    mNextCardPoz += 1.5f;
+    _card.transform.localScale = new Vector3(0.1f, 0.1f, 0.15f);
+    _card.transform.eulerAngles = new Vector3(0, _card.transform.eulerAngles.y == 0 ? 0 : 180, 0);
+
+    BattleState battleState = new BattleState(_card);
+    battleState.SetBattlezoneManager(this);
+
+    _card.SetCardState(battleState);
+
+    if (_card.HasTraits(TRAITS.BLOCKER) == true)
+    {
+        mBlockerList.Add(_card);
+    }
+
+    battleState.WhenSummoned();
+}*/
 
     public void RemoveCard(Card _card)
     {
