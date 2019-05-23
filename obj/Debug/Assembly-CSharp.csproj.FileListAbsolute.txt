@@ -168,3 +168,7 @@ C:\Users\Tony_2\Desktop\workspace\Duel-Masters\obj\Debug\Assembly-CSharp.csproj.
 C:\Users\Tony_2\Desktop\workspace\Duel-Masters\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\Tony_2\Desktop\workspace\Duel-Masters\obj\Debug\Assembly-CSharp.dll
 C:\Users\Tony_2\Desktop\workspace\Duel-Masters\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Andreea\Desktop\DuelMasters2.1\My-Duel-Master\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\Andreea\Desktop\DuelMasters2.1\My-Duel-Master\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\Andreea\Desktop\DuelMasters2.1\My-Duel-Master\obj\Debug\Assembly-CSharp.dll
+C:\Users\Andreea\Desktop\DuelMasters2.1\My-Duel-Master\obj\Debug\Assembly-CSharp.pdb

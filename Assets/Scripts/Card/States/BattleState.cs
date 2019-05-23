@@ -76,7 +76,8 @@ public class BattleState : CardState
 
     public override void LeaveState()
     {
-        mBattlezoneManager.RemoveCard(mCardReference);
+        mBattlezoneManager.RemoveCardFromManager(mCardReference);
+       
     }
 
     public int GetPower()
