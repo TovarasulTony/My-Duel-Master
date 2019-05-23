@@ -191,7 +191,7 @@ public class Card : MonoBehaviour
         }
     }
 
-    private void ChangeCardState(CARD_STATE _cardState)
+    private void ChangeCardState(CARD_STATE _cardState, GameZoneManager )
     {
 
     }

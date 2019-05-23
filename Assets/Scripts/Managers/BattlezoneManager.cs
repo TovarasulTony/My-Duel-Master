@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +28,24 @@ public class BattlezoneManager : GameZoneManager
         }
 
         battleState.WhenSummoned();
+    }
+
+    public override void RemoveCardFromManager(Card _card)
+    {
+        mNextCardPoz -= 1.5f;
+        RepositionCards(_card);
+        mCardList.Remove(_card);
+        
+      
+    }
+    private void RepositionCards(Card _card)
+    {
+        //Add Security Check
+        int startIndex  = mCardList.IndexOf(_card);
+        for (int i = startIndex + 1; i< mCardList.Count; i++)
+        {
+            mCardList[i].transform.position = new Vector3(mCardList[i].transform.position.x - 1.5f, mCardList[i].transform.position.y, mCardList[i].transform.position.z);
+        }
     }
 
     public void RemoveCard(Card _card)
