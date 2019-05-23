@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{76A0AE80-D67D-EB8C-2A08-C1AACF01F0A8}</ProjectGuid>
+    <ProjectGuid>{042B3780-BD23-4069-A08F-58A907094E59}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -100,16 +100,16 @@
     <None Include="Assets\VolumetricLines\Shaders\Fast-Additive.shader" />
     <None Include="Assets\VolumetricLines\Shaders\_SimpleShader.cginc" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/Tony_2/Desktop/workspace/Duel-Masters/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Tony_2/Desktop/workspace/My-Duel-Master/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Tony_2/Desktop/workspace/Duel-Masters/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/Tony_2/Desktop/workspace/My-Duel-Master/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Tony_2/Desktop/workspace/Duel-Masters/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Tony_2/Desktop/workspace/My-Duel-Master/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Tony_2/Desktop/workspace/Duel-Masters/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/Tony_2/Desktop/workspace/My-Duel-Master/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

@@ -18,7 +18,6 @@ public class Card : MonoBehaviour
 {
     private List<TRAITS> mTraits;
     private CARD_CIVILIZATION mCardCivilization;
-    //private CARD_STATE mCardState.GetState()= CARD_STATE.INVALID;
     private PLAYER_ID mPlayerOwner = PLAYER_ID.INVALID;
     public Vector3 mOrigPosition;
     public Quaternion mOrigRotation;
@@ -26,7 +25,6 @@ public class Card : MonoBehaviour
     private float mTappedEulerAngleY;
 
     private BattlezoneManager mBattlezoneManager;
-    //private ManazoneManager mManazoneManager;
     private CardState mCardState;
 
     private int mPower;
@@ -40,12 +38,6 @@ public class Card : MonoBehaviour
    
 
     private LineRenderer mLineRenderer;
-
-    //spamez carti pe bord sa testez atacul
-    public void TestSetBattlezone()//functie pusa doar pt test, de sters
-    {
-        //ChangeCardState(CARD_STATE.BATTLEZONE);
-    }
 
     public void TestSetOwner()
     {
@@ -63,14 +55,10 @@ public class Card : MonoBehaviour
         mLineRenderer.enabled = false;
 
         mID = GameManager.instance.GetID();
-        
-        //ChangeCardState(CARD_STATE.DECK);
-        //SetCardState(new HandState(GetComponent<Card>()));
     }	
 
     public void NewTurn()
     {
-        //mManazoneManager = GameManager.instance.GetActiveManazone();
         mCardState.NewTurn();
     }
 
@@ -82,11 +70,6 @@ public class Card : MonoBehaviour
     public void LockTap()
     {
         mCardState.LockTap();
-    }
-
-    void Start ()
-    {
-        //mManazoneManager = GameManager.instance.GetActiveManazone();
     }
 	
 	void Update ()
@@ -109,21 +92,6 @@ public class Card : MonoBehaviour
     {
         if(mIsInAir == true)
         {
-            //idk what is this and I am lazy so it shall rule this kingdom.
-            /*
-            Debug.Log(Input.mousePosition + " " + Screen.width + " " + Screen.height);
-            float middleWidth = Screen.width / 2;
-            float middleHeight = Screen.height / 2;
-
-            float translatedWidth = Input.mousePosition.x - middleWidth;
-            float translatedHeight = Input.mousePosition.y - middleHeight;
-
-            float newPosition_X = 8 * translatedWidth / 188;
-            //Debug.Log(translatedHeight)
-            float newPosition_Z = 5 * translatedHeight / 106;
-
-            transform.position = new Vector3(newPosition_X, 0.1f, newPosition_Z);
-            */
             Vector3 mousePoz = Input.mousePosition;
             mousePoz.z = 8;
             Vector3 newPosition = Camera.main.ScreenToWorldPoint(mousePoz);
@@ -173,7 +141,6 @@ public class Card : MonoBehaviour
         if (_collider.gameObject.GetComponent<ManazoneManager>() != null)
         {
             mHasEnteredManazone = true;
-            //mManazoneManager = _collider.gameObject.GetComponent<ManazoneManager>();
         }
     }
 
@@ -223,47 +190,11 @@ public class Card : MonoBehaviour
             mLineRenderer.SetPosition(1, new Vector3(newPosition.x, newPosition.y > .1f ? newPosition.y : .1f, newPosition.z));
         }
     }
-    /*
-    public void ChangeCardState(CARD_STATE _cardState)
+
+    private void ChangeCardState(CARD_STATE _cardState)
     {
-        //Debug.Log(_cardState + " " + mIsTargeting);
-        if(_cardState == CARD_STATE.HAND)
-        {
-            return;
-        }
 
-        if (_cardState == mCardState.GetState())
-        {
-            Debug.LogWarning("Se schimba stateul cartii intr-o stare in care suntem deja!!!");
-            //return;
-        }
-
-     
-
-        if (mCardState.GetState()== CARD_STATE.AIR && _cardState != CARD_STATE.HAND)
-        {
-        }
-
-        //mCardState.GetState()= _cardState;
-
-
-        if (mCardState.GetState()== CARD_STATE.HAND)
-        {
-            transform.rotation = mOrigRotation;
-            transform.position = mOrigPosition;
-        }
-
-        if (mCardState.GetState()== CARD_STATE.BATTLEZONE)
-        {
-            SetCardState(new BattleState(GetComponent<Card>()));
-        }
-        if (mCardState.GetState()== CARD_STATE.MANAZONE)
-        {
-            SetCardState(new ManaState(GetComponent<Card>()));
-        }
-    }*/
-
-  
+    }
 
     void OnMouseEnter()
     {
@@ -340,11 +271,13 @@ public class Card : MonoBehaviour
     {
 
     }
-   public void TurnLineRenderer(bool _isOn)
+
+    public void TurnLineRenderer(bool _isOn)
     {
         mLineRenderer.enabled = _isOn;
 
     }
+
     public void SetCardState(CardState _state)
     {
         if (mCardState != null)

@@ -19,15 +19,6 @@ public enum GAME_PHASE
 
 };
 
-public enum MANAGERS
-{
-    INVALID = 0,
-    MANAZONE = 1,
-    BATTLEZONE = 2,
-    HAND = 3
-
-};
-
 public class GameManager : MonoBehaviour
 {
     public GAME_PHASE mGamePhase = GAME_PHASE.INVALID;

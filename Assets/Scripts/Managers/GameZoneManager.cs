@@ -6,11 +6,6 @@ public class GameZoneManager : MonoBehaviour {
     public List<Card> mCardList;
     protected float mNextCardPoz = -2;
 
-    void Start ()
-    {
-		
-	}
-
    public void AddCardToManager(Card _card)
     {
         mCardList.Add(_card);
@@ -20,12 +15,24 @@ public class GameZoneManager : MonoBehaviour {
         _card.transform.eulerAngles = new Vector3(0, _card.transform.eulerAngles.y == 0 ? 0 : 180, 0);
         NotifyCardWasAdded(_card);
     }
+
     protected virtual void NotifyCardWasAdded(Card _card)
     {
-        
+
     }
-    void Update ()
+
+    public List<Card> GetConditionalList(ConditionData _data)
     {
-		
-	}
+        List<Card> list = new List<Card>();
+        for (int i = 0; i < mCardList.Count; ++i)
+        {
+            _data.GetConditionCallback().Invoke(mCardList[i], _data);
+            if (_data.Response == true)
+            {
+                list.Add(mCardList[i]);
+            }
+        }
+
+        return list;
+    }
 }
