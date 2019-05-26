@@ -2,32 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CARD_STATE
-{
-    INVALID,
-    DECK,
-    HAND,
-    BATTLEZONE,
-    AIR,
-    MANAZONE,
-    GRAVEYARD,
-    TARGETING,
-    NO_TARGETING
-};
-
 public class CardState
 {
     protected Card mCardReference;
+    protected GameZoneManager mGameZoneManager;
     protected CARD_STATE mCardState = CARD_STATE.INVALID;
     private BattlezoneManager mBattlezoneManager = null;
 
     private CardState() { }
 
-    public CardState(Card _card)
+    public CardState(Card _card, GameZoneManager _gameZoneManager)
     {
         mCardReference = _card; //it works?
         mCardState = CARD_STATE.INVALID;
         mCardReference.SetIsInAir(false);
+        mGameZoneManager = _gameZoneManager;
+
+        if (mGameZoneManager != null)
+        {
+            mGameZoneManager.AddCardToManager(mCardReference);
+        }
+    }
+
+    protected virtual void InitCardState()
+    {
+
     }
 
     public virtual void OnClick()
@@ -56,23 +55,6 @@ public class CardState
         //Debug.LogWarning("Am apelat OnClick() din abstractie!!!");
     }
 
-    public void ToGraveyard()
-    {
-        LeaveState();
-		mCardReference.DestroyCard();
-    }
-
-    public void ToHand()
-    {
-        LeaveState();
-        GameManager.instance.GetMyHandManager(mCardReference).AddCardToHand(mCardReference);
-    }
-
-    public void ToMana()
-    {
-
-    }
-
     public CARD_STATE GetState()
     {
         return mCardState;
@@ -81,7 +63,7 @@ public class CardState
 
     public virtual void LeaveState()
     {
-        
-        Debug.LogWarning("Not implemented LeaveState()!!!");
+        //Debug.LogWarning("Not implemented LeaveState()!!!");
+        mGameZoneManager.RemoveCardFromManager(mCardReference);
     }
 }

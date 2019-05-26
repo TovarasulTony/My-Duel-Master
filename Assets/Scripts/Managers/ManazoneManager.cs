@@ -23,6 +23,7 @@ public class ManazoneManager : GameZoneManager
     }
     protected override void NotifyCardWasAdded(Card _card)
     {
+        PositionCardOnTheBoard(_card);
         _card.SetUntappedEulerAngleY(_card.transform.eulerAngles.y);
     }
     /* public void AddCardToManager(Card _card)

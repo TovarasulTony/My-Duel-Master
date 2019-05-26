@@ -8,7 +8,7 @@ public class ManaState : CardState
     bool mIsTappedLocked = false;
 
 
-    public ManaState(Card _card) : base(_card)
+    public ManaState(Card _card, GameZoneManager _gameZoneManager) : base(_card, _gameZoneManager)
     {
         mCardState = CARD_STATE.MANAZONE;
     }

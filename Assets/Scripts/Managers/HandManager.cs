@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandManager : MonoBehaviour
+public class HandManager : GameZoneManager
 {
-    private List<Card> mCardList;
     private Transform mCardPrefab;
     private Deck mDeck;
     private PLAYER_ID mPlayerOwner = PLAYER_ID.INVALID;
@@ -30,7 +29,7 @@ public class HandManager : MonoBehaviour
 
     public void Draw()
     {
-        AddCardToHand(mDeck.Draw());
+        AddCardToManager(mDeck.Draw());
     }
 
     private void RepositionCards()
@@ -52,25 +51,20 @@ public class HandManager : MonoBehaviour
         }
     }
 
-    public void RemoveCardFromHand(Card _card)
+    public void RemoveCardFromHand(Card _card,Card _card2)
     {
         mCardList.Remove(_card);
         RepositionCards();
     }
 
-    public void AddCardToHand(Card _card)
+    protected override void NotifyCardWasAdded(Card _card)
     {
-        mCardList.Add(_card);
-        //mCardList[mCardList.Count - 1].SetHandManager(this);
-
-        HandState handState = new HandState(mCardList[mCardList.Count - 1]);
-        handState.SetHandManager(this);
-        mCardList[mCardList.Count - 1].SetCardState(handState);
+        mCardList[mCardList.Count - 1].SetCardState(new HandState(mCardList[mCardList.Count - 1], this));
         mCardList[mCardList.Count - 1].SetUntappedEulerAngleY(transform.eulerAngles.y);
-        
+
         RepositionCards();
     }
-	
+
     public void SetDeck(Deck _deck)
     {
         mDeck = _deck;

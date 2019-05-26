@@ -5,7 +5,7 @@ using UnityEngine;
 public class HandState : CardState
 {
     private HandManager mHandManager = null;
-    public HandState(Card _card) : base(_card)
+    public HandState(Card _card, GameZoneManager _gameZoneManager) : base(_card, _gameZoneManager)
     {
         mCardState = CARD_STATE.HAND;
         mCardReference.transform.rotation = mCardReference.mOrigRotation;
@@ -29,12 +29,6 @@ public class HandState : CardState
         mCardReference.SetIsInAir(false);
         mCardReference.transform.position = mCardReference.mOrigPosition;
         mCardReference.transform.rotation = mCardReference.mOrigRotation;
-    }
-
-    public override void LeaveState()
-
-    {
-        mHandManager.RemoveCardFromHand(mCardReference);
     }
 
     public void SetHandManager(HandManager _manager)

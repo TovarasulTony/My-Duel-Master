@@ -2,14 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ABILITY_MOMENT
-{
-    INVALID = 0,
-    BATTLECRY,
-    END_OF_TURN,
-    BEGINNING_OF_TURN,
-    DEATHRATTLE
-};
 
 
 [System.Serializable]

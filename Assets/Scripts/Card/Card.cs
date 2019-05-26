@@ -2,16 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CARD_CIVILIZATION
-{
-    INVALID,
-    NATURE,
-    DARKNESS,
-    FIRE,
-    LIGHT,
-    WATER
-};
-
 public delegate void SendCardTo();
 
 public class Card : MonoBehaviour
@@ -56,6 +46,17 @@ public class Card : MonoBehaviour
 
         mID = GameManager.instance.GetID();
     }	
+
+    public void WhenSummoned()
+    {
+        if(mCardState.GetState() != CARD_STATE.BATTLEZONE || mCardState as BattleState == null)
+        {
+            Debug.LogWarning("Se apeleaza WhenSummoned cand nu trebuie!!!");
+            return;
+        }
+
+        (mCardState as BattleState).WhenSummoned();//isn't this lovely?
+    }
 
     public void NewTurn()
     {
@@ -115,14 +116,13 @@ public class Card : MonoBehaviour
 
         if (mHasEnteredBattlezone == true && GameManager.instance.CanSummon(GetComponent<Card>()) == true)
         {
-            mBattlezoneManager.AddCardToManager(this);
+            SetCardState(new ManaState(GetComponent<Card>(), GameManager.instance.GetActiveManazone()));
             return;
         }
 
         if (mHasEnteredManazone == true && GameManager.instance.CanPlayMana(GetComponent<Card>()) == true)
         {
-            SetCardState(new ManaState(GetComponent<Card>()));
-            GameManager.instance.GetActiveManazone().AddCardToManager(this);
+            SetCardState(new ManaState(GetComponent<Card>(), GameManager.instance.GetActiveManazone()));
             return;
         }
 
@@ -152,7 +152,8 @@ public class Card : MonoBehaviour
         }
         else
         {
-            mCardState.ToGraveyard();
+            mCardState.LeaveState();
+            Destroy(this);
         }
     }
 	
@@ -161,9 +162,17 @@ public class Card : MonoBehaviour
 		Destroy(gameObject);
 	}
 
-    public void ToHand()
+    public void ToHand(PLAYER_ASSOCIATION _playerAssociation)
     {
-        mCardState.ToHand();
+        if(_playerAssociation == PLAYER_ASSOCIATION.ALLY)
+        {
+            SetCardState(new HandState(GetComponent<Card>(), GameManager.instance.GetMyHandManager(GetComponent<Card>())));
+        }
+        else
+        {
+            Debug.LogWarning("ToHand catre inamic neimplementat!!!");
+            Debug.LogError("ToHand catre inamic neimplementat!!!");
+        }
     }
 
     void OnTriggerExit(Collider _collider)
@@ -189,11 +198,6 @@ public class Card : MonoBehaviour
             mLineRenderer.SetPosition(0, transform.position);
             mLineRenderer.SetPosition(1, new Vector3(newPosition.x, newPosition.y > .1f ? newPosition.y : .1f, newPosition.z));
         }
-    }
-
-    private void ChangeCardState(CARD_STATE _cardState, GameZoneManager )
-    {
-
     }
 
     void OnMouseEnter()

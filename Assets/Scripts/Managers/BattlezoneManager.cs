@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class BattlezoneManager : GameZoneManager
 {
-  
     public List<Transform> mInitCardList;
     private PLAYER_ID mPlayerOwner = PLAYER_ID.INVALID;
     private List<Card> mBlockerList;
@@ -17,27 +16,21 @@ public class BattlezoneManager : GameZoneManager
 
     protected override void NotifyCardWasAdded(Card _card)
     {
-        BattleState battleState = new BattleState(_card);
-        battleState.SetBattlezoneManager(this);
-
-        _card.SetCardState(battleState);
-
+        PositionCardOnTheBoard(_card);
         if (_card.HasTraits(TRAITS.BLOCKER) == true)
         {
             mBlockerList.Add(_card);
         }
 
-        battleState.WhenSummoned();
+        _card.WhenSummoned();
     }
 
-    public override void RemoveCardFromManager(Card _card)
+    protected override void NotifyCardWasRemoved(Card _card)
     {
         mNextCardPoz -= 1.5f;
         RepositionCards(_card);
-        mCardList.Remove(_card);
-        
-      
     }
+
     private void RepositionCards(Card _card)
     {
         //Add Security Check

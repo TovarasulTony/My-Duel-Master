@@ -43,12 +43,12 @@ public class AbilitiesHolder : MonoBehaviour
 
             for (int i = 0; i < cardList.Count; ++i)
             {
-                cardList[i].ToHand();
+                cardList[i].ToHand(PLAYER_ASSOCIATION.ALLY);
             }
         }
         else if(_data.GetConditionData().Targets == TARGETS.SELF)
         {
-            _data.mCaster.ToHand();
+            _data.mCaster.ToHand(PLAYER_ASSOCIATION.ALLY);
         }
     }
 

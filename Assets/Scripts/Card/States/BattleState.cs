@@ -10,7 +10,7 @@ public class BattleState : CardState
     private bool mIsTargeting = false;
     private BattlezoneManager mBattlezoneManager = null;
 
-    public BattleState(Card _card) : base(_card)
+    public BattleState(Card _card, GameZoneManager _gameZoneManager) : base(_card, _gameZoneManager)
     {
         mHasSummoningSickness = true;
         mCardState = CARD_STATE.BATTLEZONE;
@@ -72,12 +72,6 @@ public class BattleState : CardState
     {
         mIsTapped = false;
         mHasSummoningSickness = false;
-    }
-
-    public override void LeaveState()
-    {
-        mBattlezoneManager.RemoveCardFromManager(mCardReference);
-       
     }
 
     public int GetPower()

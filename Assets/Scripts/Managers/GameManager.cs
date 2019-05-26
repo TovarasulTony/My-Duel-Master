@@ -3,22 +3,6 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public enum PLAYER_ID
-{
-    INVALID = 0,
-    ONE = 1,
-    TWO = 2
-};
-
-public enum GAME_PHASE
-{
-    INVALID = 0,
-    MANA_PHASE = 1,
-    SUMMONING_PHASE = 2,
-    ATTACKING_PHASE = 3
-
-};
-
 public class GameManager : MonoBehaviour
 {
     public GAME_PHASE mGamePhase = GAME_PHASE.INVALID;
@@ -192,8 +176,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
-
     public void CardOnAir(bool _onAir)
     {
         if (_onAir == false)
@@ -287,7 +269,6 @@ public class GameManager : MonoBehaviour
             mTargetingCard.SetIsTargeting(true);
         }
     }
-
 
     public void HoverEnter(Transform _hoveredCard)
     {

@@ -2,16 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TARGETS
-{
-    INVALID = 0,
-    ALL,
-    ENEMY,
-    PLAYER,
-    CHOICE,
-    SELF
-}
-
 [System.Serializable]
 public class ConditionData
 {

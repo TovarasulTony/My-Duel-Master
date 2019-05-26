@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DeckState : CardState
 {
-    public DeckState(Card _card) : base(_card)
+    int dodo = 10;
+    public DeckState(Card _card, GameZoneManager _gameZoneManager) : base(_card, _gameZoneManager)
     {
         mCardState = CARD_STATE.DECK;
     }
