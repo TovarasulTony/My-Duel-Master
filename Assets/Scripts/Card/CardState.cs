@@ -19,7 +19,7 @@ public class CardState
 {
     protected Card mCardReference;
     protected CARD_STATE mCardState = CARD_STATE.INVALID;
-    private BattlezoneManager mBattlezoneManager = null;
+    
 
     private CardState() { }
 
